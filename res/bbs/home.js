@@ -39,6 +39,7 @@ layui.use(['layer','form'], function(){
 			    		if(data[i].postIsBest==1){
 			    			$(li).append("<span class='fly-jing'>精</span>");
 			    		}
+			    		//获取帖子的ID
 			    		var postId=data[i].postId;
 			    		var url='/fly/html/jie/detail.html?postId='+postId;
 			    		$(li).append("<a href="+url+" class='jie-title'>"+ data[i].postTopic+"</a>");
@@ -51,7 +52,9 @@ layui.use(['layer','form'], function(){
 			});
 		})
  		
- 		  
+ 	var getPosts=function(){
+ 		
+ 	}
  		 
 })
 
