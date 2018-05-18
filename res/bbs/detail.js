@@ -3,8 +3,6 @@ layui.use(['layer','form'], function(){
  			 var $=layui.jquery
  			 ,layer=layui.layer
  			 ,form=layui.form;
-
-		$(function(){
 			var postId=GetRequest();
 			$.ajax({
 				method : "get",
@@ -59,8 +57,8 @@ layui.use(['layer','form'], function(){
 			    	}
 			    }
 			})
-		})
-
+			
+			$("#typeName").load("/fly/html/common/column.html");
 })
 
 //获取url后面带过来的参数

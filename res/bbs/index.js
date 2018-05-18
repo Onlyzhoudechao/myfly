@@ -39,7 +39,7 @@ function getpost(typeId){
 			    }
 			});
 }
-
+//查询出顶置的4条帖子
 function selectPostTop(){
 	$.ajax({
 			method : "get",
@@ -68,6 +68,7 @@ function selectPostTop(){
 			}
 		})
 }
+//查询出首页的前20条帖子
 function selectPostLimit(){
 	$.ajax({
 			method : "get",
