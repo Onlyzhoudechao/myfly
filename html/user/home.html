@@ -11,44 +11,7 @@
   <link rel="stylesheet" href="../../res/css/global.css">
 </head>
 <body style="margin-top: 65px;">
-<!--
-<div class="fly-header layui-bg-black">
-  <div class="layui-container">
-    <a class="fly-logo" href="/">
-      <img src="../../res/images/logo.png" alt="layui">
-    </a>
-    <ul class="layui-nav fly-nav layui-hide-xs">
-      <li class="layui-nav-item layui-this">
-        <a href="/"><i class="iconfont icon-jiaoliu"></i>交流</a>
-      </li>
-      <li class="layui-nav-item">
-        <a href="../case/case.html"><i class="iconfont icon-iconmingxinganli"></i>案例</a>
-      </li>
-      <li class="layui-nav-item">
-        <a href="http://www.layui.com/" target="_blank"><i class="iconfont icon-ui"></i>框架</a>
-      </li>
-    </ul>
-    
-    <ul class="layui-nav fly-nav-user" style="display:none">
-     	
-      <li class="layui-nav-item">
-        <a class="fly-nav-avatar" href="javascript:;">
-          <cite class="layui-hide-xs">贤心</cite>
-          <i class="layui-badge fly-badge-vip layui-hide-xs">VIP3</i>
-          <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
-        </a>
-        <dl class="layui-nav-child">
-          <dd><a href="../user/set.html"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
-          <dd><a href="../user/message.html"><i class="iconfont icon-tongzhi" style="top: 4px;"></i>我的消息</a></dd>
-          <dd><a href="../user/home.html"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
-          <hr style="margin: 5px 0;">
-          <dd><a href="" style="text-align: center;">退出</a></dd>
-        </dl>
-      </li>
-    </ul>
-  </div>
-</div>
--->
+
 <div id="header"></div>
 <div class="fly-home fly-panel" style="background-image: url();">
   <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" alt="贤心">
@@ -88,43 +51,7 @@
       <div class="fly-panel">
         <h3 class="fly-panel-title" id="recently"></h3>
         <ul class="jie-row" id="post">
-          <!--<li>
-            <span class="fly-jing">精</span>
-            <a href="" class="jie-title"> 基于 layui 的极简社区页面模版</a>
-            <i>刚刚</i>
-            <em class="layui-hide-xs">1136阅/27答</em>
-          </li>
-          <li>
-            <a href="" class="jie-title"> 基于 layui 的极简社区页面模版</a>
-            <i>1天前</i>
-            <em class="layui-hide-xs">1136阅/27答</em>
-          </li>
-          <li>
-            <a href="" class="jie-title"> 基于 layui 的极简社区页面模版</a>
-            <i>2017-10-30</i>
-            <em class="layui-hide-xs">1136阅/27答</em>
-          </li>
-          <li>
-            <a href="" class="jie-title"> 基于 layui 的极简社区页面模版</a>
-            <i>1天前</i>
-            <em class="layui-hide-xs">1136阅/27答</em>
-          </li>
-          <li>
-            <a href="" class="jie-title"> 基于 layui 的极简社区页面模版</a>
-            <i>1天前</i>
-            <em class="layui-hide-xs">1136阅/27答</em>
-          </li>
-          <li>
-            <a href="" class="jie-title"> 基于 layui 的极简社区页面模版</a>
-            <i>1天前</i>
-            <em class="layui-hide-xs">1136阅/27答</em>
-          </li>
-          <li>
-            <a href="" class="jie-title"> 基于 layui 的极简社区页面模版</a>
-            <i>1天前</i>
-            <em class="layui-hide-xs">1136阅/27答</em>
-          </li>-->
-          <!-- <div class="fly-none" style="min-height: 50px; padding:30px 0; height:auto;"><i style="font-size:14px;">没有发表任何求解</i></div> -->
+          
         </ul>
       </div>
     </div>
@@ -173,8 +100,7 @@ full: true
 </div>
 
 <script src="../../res/layui/layui.js"></script>
-<script src="../../res/bbs/home.js"></script>
-<script src="../../res/bbs/bbsUtil.js"></script>
+
 <script>
 layui.cache.page = 'user';
 layui.config({
@@ -183,7 +109,11 @@ layui.config({
 }).extend({
   fly: 'index'
 }).use('fly');
+layui.config({base: '/fly/res/mods/'}).extend({
+    jquery_cookie: 'jquery.cookie' 
+ }).use('cookies');
 </script>
-
+<script src="../../res/bbs/home.js"></script>
+<script src="../../res/bbs/bbsUtil.js"></script>
 </body>
 </html>

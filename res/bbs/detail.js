@@ -1,12 +1,11 @@
 layui.use(['layer','form'], function(){
-			 var bbsUrl="http://127.0.0.1:8080/oneManageM/";
  			 var $=layui.jquery
  			 ,layer=layui.layer
  			 ,form=layui.form;
 			var postId=GetRequest();
 			$.ajax({
 				method : "get",
-				url:bbsUrl+"post/getPost/"+postId+".action",
+				url:layui.data('url').bbsUrl+"post/getPost/"+postId+".action",
 				dataType:"json",  
 			    contentType:"application/json;charset=utf-8",
 			    success:function(data){
@@ -57,7 +56,7 @@ layui.use(['layer','form'], function(){
 			    	}
 			    }
 			})
-			
+			$("#header").load("/fly/html/common/header.html");
 			$("#typeName").load("/fly/html/common/column.html");
 })
 

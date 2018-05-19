@@ -1,15 +1,16 @@
 layui.use(['layer','form'], function(){
-			 var bbsUrl="http://127.0.0.1:8080/oneManageM/";
  			 var $=layui.jquery
  			 ,layer=layui.layer
  			 ,form=layui.form;
-  	//异步访问后台用户名是否重复
+ 			 
+ 		 $("#header").load("/fly/html/common/header.html");
+  		//异步访问后台用户名是否重复
 		$("#L_username").blur(function(){
 			    //必须取值，不然传不到值
 			    var userName = $(this).val(); 
 			    //用ajax去数据库匹配，
 			    $.ajax({
-			        url:bbsUrl+"register/getBuserAndEmail.action",       //要处理的页面
+			        url:layui.data('url').bbsUrl+"register/getBuserAndEmail.action",       //要处理的页面
 			        data:JSON.stringify({userName:userName}),              //要传过去的数据
 			        type:"POST",               //提交方式
 			        dataType:"json",  
@@ -29,7 +30,7 @@ layui.use(['layer','form'], function(){
 			    var userEmail = $(this).val(); 
 			    //用ajax去数据库匹配，
 			    $.ajax({
-			        url:bbsUrl+"register/getBuserAndEmail.action",       //要处理的页面
+			        url:layui.data('url').bbsUrl+"register/getBuserAndEmail.action",       //要处理的页面
 			        data:JSON.stringify({userEmail:userEmail}),              //要传过去的数据
 			        type:"POST",               //提交方式
 			        dataType:"json",  
@@ -57,7 +58,7 @@ layui.use(['layer','form'], function(){
 		
 		 form.on('submit(register)', function(data){
 		 	var action = $(data.form).attr('action');
-		 	var url=bbsUrl+action;
+		 	var url=layui.data('url').bbsUrl+action;
 		 	$.ajax({
 		 		type:'post',
 		        dataType:'json',

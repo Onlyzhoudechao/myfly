@@ -1,5 +1,4 @@
 layui.use(['layer','form'], function(){
-			 var bbsUrl="http://127.0.0.1:8080/oneManageM/";
  			 var $=layui.jquery
  			 ,layer=layui.layer
  			 ,form=layui.form;

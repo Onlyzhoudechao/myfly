@@ -12,82 +12,8 @@
   <link rel="stylesheet" href="../res/css/global.css">
 </head>
 <body>
-	<div class="fly-header layui-bg-black">
-  <div class="layui-container">
-    <a class="fly-logo" href="/">
-      <img src="../res/images/logo.png" alt="layui">
-    </a>
-    <ul class="layui-nav fly-nav layui-hide-xs">
-      <li class="layui-nav-item layui-this">
-        <a href="/"><i class="iconfont icon-jiaoliu"></i>交流</a>
-      </li>
-      <li class="layui-nav-item">
-        <a href="case/case.html"><i class="iconfont icon-iconmingxinganli"></i>案例</a>
-      </li>
-      <li class="layui-nav-item">
-        <a href="http://www.layui.com/" target="_blank"><i class="iconfont icon-ui"></i>框架</a>
-      </li>
-    </ul>
-    
-    <ul class="layui-nav fly-nav-user">
-      
-      <!-- 未登入的状态 -->
-      <li class="layui-nav-item">
-        <a class="iconfont icon-touxiang layui-hide-xs" href="user/login.html"></a>
-      </li>
-      <li class="layui-nav-item">
-        <a href="user/login.html">登入</a>
-      </li>
-      <li class="layui-nav-item">
-        <a href="user/reg.html">注册</a>
-      </li>
-      <li class="layui-nav-item layui-hide-xs">
-        <a href="/app/qq/" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" title="QQ登入" class="iconfont icon-qq"></a>
-      </li>
-      <li class="layui-nav-item layui-hide-xs">
-        <a href="/app/weibo/" onclick="layer.msg('正在通过微博登入', {icon:16, shade: 0.1, time:0})" title="微博登入" class="iconfont icon-weibo"></a>
-      </li>
-      
-      <!-- 登入后的状态 -->
-      <!--
-      <li class="layui-nav-item">
-        <a class="fly-nav-avatar" href="javascript:;">
-          <cite class="layui-hide-xs">贤心</cite>
-          <i class="iconfont icon-renzheng layui-hide-xs" title="认证信息：layui 作者"></i>
-          <i class="layui-badge fly-badge-vip layui-hide-xs">VIP3</i>
-          <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
-        </a>
-        <dl class="layui-nav-child">
-          <dd><a href="user/set.html"><i class="layui-icon">&#xe620;</i>基本设置</a></dd>
-          <dd><a href="user/message.html"><i class="iconfont icon-tongzhi" style="top: 4px;"></i>我的消息</a></dd>
-          <dd><a href="user/home.html"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
-          <hr style="margin: 5px 0;">
-          <dd><a href="/user/logout/" style="text-align: center;">退出</a></dd>
-        </dl>
-      </li>
-      -->
-    </ul>
-  </div>
-</div>
-
-<div class="fly-panel fly-column">
-  <div class="layui-container">
-    <ul class="layui-clear" id="layui_myul">
-      <li class="layui-hide-xs layui-this"><a href="/fly/html/index.html">首页</a></li> 
-     
-      <li class="layui-hide-xs layui-hide-sm layui-show-md-inline-block"><span class="fly-mid"></span></li> 
-    </ul> 
-    
-    <div class="fly-column-right layui-hide-xs"> 
-      <span class="fly-search"><i class="layui-icon"></i></span> 
-      <a href="jie/add.html" class="layui-btn">发表新帖</a> 
-    </div> 
-   <!-- <div class="layui-hide-sm layui-show-xs-block" style="margin-top: -10px; padding-bottom: 10px; text-align: center;"> 
-      <a href="jie/add.html" class="layui-btn">发表新帖</a> 
-    </div> -->
-  </div>
-</div>
-
+<div id="header"></div>
+<div class="fly-panel fly-column" id="typeName"></div>
 <div class="layui-container">
   <div class="layui-row layui-col-space15">
     <div class="layui-col-md8">
@@ -103,15 +29,7 @@
 
       <div class="fly-panel" style="margin-bottom: 0;">
         
-        <div class="fly-panel-title fly-filter">
-          <a href="" class="layui-this">综合</a>
-          <span class="fly-mid"></span>
-          <a href="">未结</a>
-          <span class="fly-mid"></span>
-          <a href="">已结</a>
-          <span class="fly-mid"></span>
-          <a href="">精华</a>
-        </div>
+       <div id="zonghe"></div>  
 
         <ul class="fly-list" id="postLimit">          
         </ul>
@@ -324,7 +242,7 @@
 <script src="../res/layui/layui.js"></script>
 <script src="../res/bbs/bbsUtil.js"></script>
 <script>
-layui.cache.page = '';
+layui.cache.page = 'index';
 layui.cache.user = {
   username: '游客'
   ,uid: -1
@@ -338,10 +256,12 @@ layui.config({
 }).extend({
   fly: 'index'
 }).use('fly');
+layui.config({base: '/fly/res/mods/'}).extend({
+    jquery_cookie: 'jquery.cookie' 
+ }).use('cookies');
 </script>
 
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_30088308'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "w.cnzz.com/c.php%3Fid%3D30088308' type='text/javascript'%3E%3C/script%3E"));</script>
 <script src="../res/bbs/index.js"></script>
-
 </body>
 </html>

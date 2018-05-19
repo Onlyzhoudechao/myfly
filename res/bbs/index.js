@@ -1,49 +1,25 @@
 var $;
-var bbsUrl="http://127.0.0.1:8080/oneManageM/";
 layui.use(['layer','laytpl', 'form', 'element'],function(){
 	$=layui.jquery
 	,laytpl = layui.laytpl
  	,form = layui.form
   	,element = layui.element
 	,layer=layui.layer;
-	var localSession=layui.sessionData('user');
-		$.ajax({
-			type:"POST",
-			url:bbsUrl+"type/listType.action",
-			dataType:"json",  
-			contentType:"application/json;charset=utf-8",
-			success:function(data){
-				if(data){
-					for(var i = 0; i<data.length; i++){
-						$("#layui_myul li").eq(1).append(" <li><a href='javascript:void(0);' onclick='getpost("+data[i].typeId+")'>"+data[i].typeName+"</a></li>");
-					}
-					if(localSession.userName!=null){
-						var ul=$("#layui_myul");
-						ul.append("<li class='layui-hide-xs layui-hide-sm layui-show-md-inline-block'><a href='user/index.html'>我发表的贴</a></li>");
-						ul.append("<li class='layui-hide-xs layui-hide-sm layui-show-md-inline-block'><a href='user/index.html#collection'>我收藏的贴</a></li>");
-					}
-				}
-				selectPostTop();
-			}
-		})
+	$("#header").load("/fly/html/common/header.html");
+	$("#typeName").load("/fly/html/common/column.html");
+	$("#zonghe").load("/fly/html/common/filter.html");
+	
+	layui.data('url', {
+	  key: 'bbsUrl'
+	  ,value: 'http://127.0.0.1:8080/oneManageM/'
+	});
  })
-//根据帖子的类型，查找出对应的帖子
-function getpost(typeId){
-	$.ajax({
-				method : "get",
-				url:bbsUrl+"type/listType.action",
-				dataType:"json",  
-			    contentType:"application/json;charset=utf-8",
-			    success:function(data){
-			    	alert("ok");
-			    }
-			});
-}
+
 //查询出顶置的4条帖子
 function selectPostTop(){
 	$.ajax({
 			method : "get",
-			url:bbsUrl+"post/selectPostTop.action",
+			url:layui.data('url').bbsUrl+"post/selectPostTop.action",
 			dataType:"json",  
 			contentType:"application/json;charset=utf-8",
 			success:function(data){
@@ -72,7 +48,7 @@ function selectPostTop(){
 function selectPostLimit(){
 	$.ajax({
 			method : "get",
-			url:bbsUrl+"post/selectPostLimit.action",
+			url:layui.data('url').bbsUrl+"post/selectPostLimit.action",
 			dataType:"json",  
 			contentType:"application/json;charset=utf-8",
 			success:function(data){
