@@ -1,8 +1,8 @@
+
 layui.use(['layer','form'], function(){
  			 var $=layui.jquery
  			 ,layer=layui.layer
  			 ,form=layui.form;
- 			 
  		 $("#header").load("/fly/html/common/header.html");
  		 
  		 $.ajax({
@@ -33,7 +33,6 @@ layui.use(['layer','form'], function(){
 		});
 		//提交修改
 		form.on('submit(editBuser)', function(data){
-	        //登陆验证
 	        $.ajax({
 	            url: layui.data('url').bbsUrl+"/buser/putBuser.action",
 	            type: 'post',

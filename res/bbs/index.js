@@ -57,7 +57,7 @@ function selectPostLimit(){
 					var postId=data[i].postId;
 			    	var url='/fly/html/jie/detail.html?postId='+postId;
 					var li = document.createElement("li");
-					$(li).append("<a href='user/home.html' class='fly-avatar'><img src='https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg' alt='贤心'></a>");
+					$(li).append("<a href='user/home.html' class='fly-avatar'><img src='/fly/res/images/top.jpg'></a>");
 					$(li).append("<h2><a class='layui-badge'>"+data[i].postTypename+"</a><a href="+url+">"+data[i].postTopic+"</a></h2>");
 					var parentdiv=$('<div></div>');
 					parentdiv.addClass('fly-list-info');

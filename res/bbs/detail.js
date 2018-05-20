@@ -3,6 +3,7 @@ layui.use(['layer','form'], function(){
  			 ,layer=layui.layer
  			 ,form=layui.form;
 			var postId=GetRequest();
+			console.log(postId);
 			$.ajax({
 				method : "get",
 				url:layui.data('url').bbsUrl+"post/getPost/"+postId+".action",

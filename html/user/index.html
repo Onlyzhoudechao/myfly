@@ -61,40 +61,24 @@
     -->
     <div class="layui-tab layui-tab-brief" lay-filter="user">
       <ul class="layui-tab-title" id="LAY_mine">
-        <li data-type="mine-jie" lay-id="index" class="layui-this">我发的帖（<span>89</span>）</li>
-        <li data-type="collection" data-url="/collection/find/" lay-id="collection">我收藏的帖（<span>16</span>）</li>
+        <li data-type="mine-jie" lay-id="index" class="layui-this">我发的帖（<span id="postNum"></span>）</li>
+        <li data-type="collection" data-url="/collection/find/" lay-id="collection">我收藏的帖（<span id="markPostnum"></span>）</li>
       </ul>
       <div class="layui-tab-content" style="padding: 20px 0;">
         <div class="layui-tab-item layui-show">
-          <ul class="mine-view jie-row">
-            <li>
-              <a class="jie-title" href="../jie/detail.html" target="_blank">基于 layui 的极简社区页面模版</a>
-              <i>2017/3/14 上午8:30:00</i>
-              <a class="mine-edit" href="/jie/edit/8116">编辑</a>
-              <em>661阅/10答</em>
-            </li>
-            <li>
-              <a class="jie-title" href="../jie/detail.html" target="_blank">基于 layui 的极简社区页面模版</a>
-              <i>2017/3/14 上午8:30:00</i>
-              <a class="mine-edit" href="/jie/edit/8116">编辑</a>
-              <em>661阅/10答</em>
-            </li>
-            <li>
-              <a class="jie-title" href="../jie/detail.html" target="_blank">基于 layui 的极简社区页面模版</a>
-              <i>2017/3/14 上午8:30:00</i>
-              <a class="mine-edit" href="/jie/edit/8116">编辑</a>
-              <em>661阅/10答</em>
-            </li>
+          <ul class="mine-view jie-row" id="myPost">
+            
           </ul>
-          <div id="LAY_page"></div>
+          <div style="text-align: center" id="page"></div>
         </div>
         <div class="layui-tab-item">
-          <ul class="mine-view jie-row">
+          <ul class="mine-view jie-row" id="markPost">
             <li>
               <a class="jie-title" href="../jie/detail.html" target="_blank">基于 layui 的极简社区页面模版</a>
-              <i>收藏于23小时前</i>  </li>
+              <i>收藏于23小时前</i>  
+            </li>
           </ul>
-          <div id="LAY_page1"></div>
+          <div style="text-align: center" id="page2"></div>
         </div>
       </div>
     </div>
@@ -126,7 +110,11 @@ layui.config({
 }).extend({
   fly: 'index'
 }).use('fly');
+layui.config({base: '/fly/res/mods/'}).extend({
+    jquery_cookie: 'jquery.cookie' 
+ }).use('cookies');
 </script>
+<script src="../../res/bbs/bbsUtil.js"></script>
 <script src="/fly/res/bbs/user/index.js"></script>
 </body>
 </html>
