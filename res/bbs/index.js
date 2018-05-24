@@ -26,14 +26,20 @@ function selectPostTop(){
 				var ul=document.getElementById("postTop");
 				for(var i=0;data.length>i;i++){
 					var postId=data[i].postId;
+					var answeNum;
+					if(data[i].postAnswernum){
+						answeNum=data[i].postAnswernum
+					}else{
+						answeNum=0;
+					}
 			    	var url='/fly/html/jie/detail.html?postId='+postId;
 					var li = document.createElement("li");
-					$(li).append("<a href='user/home.html' class='fly-avatar'><img src='https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg' alt='贤心'></a>");
+					$(li).append("<a href='user/home.html' class='fly-avatar'><img src='/fly/res/images/top.jpg'></a>");
 					$(li).append("<h2><a class='layui-badge'>"+data[i].postTypename+"</a><a href="+url+">"+data[i].postTopic+"</a></h2>");
 					var parentdiv=$('<div></div>');
 					parentdiv.addClass('fly-list-info');
 					parentdiv.append("<a href='user/home.html' link><cite>"+data[i].postUsername+"</cite></a><span>"+dateFormat(data[i].postCreatetime)+"</span>");
-					parentdiv.append(" <span class='fly-list-nums'>  <i class='iconfont icon-pinglun1' title='回答'></i>"+data[i].postAnswernum+"</span>");
+					parentdiv.append(" <span class='fly-list-nums'>  <i class='iconfont icon-pinglun1' title='回答'></i>"+answeNum+"</span>");
 					$(li).append(parentdiv);
 					if(data[i].postIsbest==1){
 						$(li).append("<div class='fly-list-badge'><span class='layui-badge layui-bg-red'>精帖</span></div>");
@@ -56,13 +62,19 @@ function selectPostLimit(){
 				for(var i=0;data.length>i;i++){
 					var postId=data[i].postId;
 			    	var url='/fly/html/jie/detail.html?postId='+postId;
+			    	var answeNum;
+					if(data[i].postAnswernum){
+						answeNum=data[i].postAnswernum
+					}else{
+						answeNum=0;
+					}
 					var li = document.createElement("li");
 					$(li).append("<a href='user/home.html' class='fly-avatar'><img src='/fly/res/images/top.jpg'></a>");
 					$(li).append("<h2><a class='layui-badge'>"+data[i].postTypename+"</a><a href="+url+">"+data[i].postTopic+"</a></h2>");
 					var parentdiv=$('<div></div>');
 					parentdiv.addClass('fly-list-info');
 					parentdiv.append("<a href='user/home.html' link><cite>"+data[i].postUsername+"</cite></a><span>"+dateFormat(data[i].postCreatetime)+"</span>");
-					parentdiv.append(" <span class='fly-list-nums'>  <i class='iconfont icon-pinglun1' title='回答'></i>"+data[i].postAnswernum+"</span>");
+					parentdiv.append(" <span class='fly-list-nums'>  <i class='iconfont icon-pinglun1' title='回答'></i>"+answeNum+"</span>");
 					$(li).append(parentdiv);
 					if(data[i].postIsbest==1){
 						$(li).append("<div class='fly-list-badge'><span class='layui-badge layui-bg-red'>精帖</span></div>");

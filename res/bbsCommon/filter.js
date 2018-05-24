@@ -13,9 +13,16 @@ layui.use(['layer','laytpl', 'form', 'element','laypage'],function(){
 			$(this).addClass("layui-this");
 			var value=$(this).attr("value");
 			if(layui.cache.page && layui.cache.page == 'jie'){
-				selectPostByPage(1,limits,value);
-				//点击选择filter以后的渲染
-				 pageRender();
+				var typeid;
+				if($("#layui_myul li").hasClass("layui-this")){
+					//保持类型为点击状态
+					typeid=$("#layui_myul li .layui-this")[0].firstChild.attributes.value['value'];
+				}
+					selectPostByPage(1,limits,value,typeid);
+					//点击选择filter以后的渲染
+					 pageRender();
+			}else{
+				//window.location.href="/fly/html/jie/index.html";
 			}
 			
 		});

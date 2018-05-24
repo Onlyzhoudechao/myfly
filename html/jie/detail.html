@@ -47,24 +47,17 @@
         </div>
         <div class="detail-about">
           <a class="fly-avatar" href="../user/home.html">
-            <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" alt="贤心">
+            <img src="/fly/res/images/top.jpg">
           </a>
-          <div class="fly-detail-user">
-            <a href="../user/home.html" class="fly-link">
-              <cite id="userName"></cite>
-             <!-- <i class="iconfont icon-renzheng" title="认证信息：{{ rows.user.approve }}"></i>
-              <i class="layui-badge fly-badge-vip">VIP3</i>-->
-            </a>
-            <span id="time"></span>
+          <div class="fly-detail-user" id="detailTitle">
           </div>
           <div class="detail-hits" id="LAY_jieAdmin" data-id="123">
             <!--<span style="padding-right: 10px; color: #FF7200">悬赏：60飞吻</span>  -->
-            <span class="layui-btn layui-btn-xs jie-admin" type="edit"><a href="add.html">编辑此贴</a></span>
-            <span class="layui-btn layui-btn-xs jie-admin " type="collect" data-type="add">收藏</span>
+            <!--<span class="layui-btn layui-btn-xs jie-admin" type="edit"><a href="add.html">编辑此贴</a></span>-->
+           
           </div>
         </div>
         <div class="detail-body photos" id="content">
-          
         </div>
       </div>
 
@@ -81,16 +74,15 @@
         </ul>
         
         <div class="layui-form layui-form-pane">
-          <form action="/jie/reply/" method="post">
+          <form>
             <div class="layui-form-item layui-form-text">
               <a name="comment"></a>
               <div class="layui-input-block">
-                <textarea id="L_content" name="content" required lay-verify="required" placeholder="请输入内容"  class="layui-textarea fly-editor" style="height: 150px;"></textarea>
+                <textarea id="L_content" name="replyContent" required lay-verify="required" placeholder="请输入内容"  class="layui-textarea fly-editor" style="height: 150px;"></textarea>
               </div>
             </div>
-            <div class="layui-form-item">
-              <input type="hidden" name="jid" value="123">
-              <button class="layui-btn" lay-filter="*" lay-submit>提交回复</button>
+            <div class="layui-form-item" id="reply">
+              <button class="layui-btn" lay-filter="addReply" lay-submit>提交回复</button>
             </div>
           </form>
         </div>
@@ -175,8 +167,9 @@
 
 <script src="../../res/layui/layui.js"></script>
 <script src="../../res/bbs/bbsUtil.js"></script>
+<script src="../../res/bbs/detail.js"></script>
 <script>
-layui.cache.page = 'jie';
+layui.cache.page = '';
 layui.cache.user = {
   username: '游客'
   ,uid: -1
@@ -197,6 +190,6 @@ layui.config({base: '../../res/mods/'}).extend({
     jquery_cookie: 'jquery.cookie' 
  }).use('cookies');
 </script>
-<script src="../../res/bbs/detail.js"></script>
+
 </body>
 </html>
