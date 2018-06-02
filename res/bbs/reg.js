@@ -55,9 +55,11 @@ layui.use(['layer','form'], function(){
 			}
 		})
 		
-		
+		//点击注册触发事件
 		 form.on('submit(register)', function(data){
+		 	//获取表单中的action
 		 	var action = $(data.form).attr('action');
+		 	//拼装后台访问路径
 		 	var url=layui.data('url').bbsUrl+action;
 		 	$.ajax({
 		 		type:'post',

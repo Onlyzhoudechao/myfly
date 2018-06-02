@@ -15,7 +15,7 @@
       </li>-->
     </ul>
     
-    <ul class="layui-nav fly-nav-user" id="nologin" style="display:block">
+    <ul class="layui-nav fly-nav-user" id="nologin">
       <!-- 未登入的状态 -->
       <li class="layui-nav-item">
         <a class="iconfont icon-touxiang layui-hide-xs" href="../user/login.html"></a>
@@ -26,19 +26,12 @@
       <li class="layui-nav-item">
         <a href="/fly/html/user/reg.html">注册</a>
       </li>
-      <li class="layui-nav-item layui-hide-xs">
-        <a href="" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" title="QQ登入" class="iconfont icon-qq"></a>
-      </li>
-      <li class="layui-nav-item layui-hide-xs">
-        <a href="" onclick="layer.msg('正在通过微博登入', {icon:16, shade: 0.1, time:0})" title="微博登入" class="iconfont icon-weibo"></a>
-      </li>
     </ul>
       <!-- 登入后的状态 -->
-    <ul class="layui-nav fly-nav-user" id="logined" style="display:none">
-      <li class="layui-nav-item">
-        <a class="fly-nav-avatar" href="javascript:;">
+   <ul class="layui-nav fly-nav-user" id="logined" style="display:none">
+     	<li class="layui-nav-item">
+        <a class="fly-nav-avatar" href="javascript:void(0);">
           <cite class="layui-hide-xs" id="userName"></cite>
-          <!--<i class="layui-badge fly-badge-vip layui-hide-xs">VIP3</i>-->
           <img src="/fly/res/images/top.jpg">
         </a>
         <dl class="layui-nav-child">

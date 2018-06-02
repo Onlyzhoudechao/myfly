@@ -7,7 +7,21 @@ layui.use(['layer', 'form', 'element'],function(){
 	 	$("#userName").text($.cookie('userName'));
 	 	document.getElementById("nologin").style.display="none";
 	 	document.getElementById("logined").style.display="block";
+	 	/*var li = document.createElement("li");
+	 	$(li).append("<a class='fly-nav-avatar' href='javascript:void(0);'><cite class='layui-hide-xs'>"+$.cookie('userName')+"</cite><img src='/fly/res/images/top.jpg'></a>");
+	 	var childdl=$("<dl class='layui-nav-child'></dl>");
+	 	childdl.append("<dd><a href='/fly/html/user/set.html'><i class='layui-icon'>&#xe620;</i>基本设置</a></dd>");
+	 	childdl.append("<dd><a href='/fly/html/user/message.html'><i class='iconfont icon-tongzhi' style='top: 4px;'></i>我的消息</a></dd>");
+	 	childdl.append("<dd><a href='/fly/html/user/home.html'><i class='layui-icon' style='margin-left: 2px; font-size: 22px;'>&#xe68e;</i>我的主页</a></dd>");
+	 	childdl.append("<hr style='margin: 5px 0;'>");
+	 	childdl.append("<dd><a href='javascript:void(0);' id='logout' style='text-align: center;'>退出</a></dd>");
+	 	$(li).append(childdl);
+	 	
+	 	$("#logined").append(li);*/
 	}
+		/*$("#logined").append("<li class='layui-nav-item'><a class='iconfont icon-touxiang layui-hide-xs' href='../user/login.html'></a></li>");
+		$("#logined").append("<li class='layui-nav-item'><a href='/fly/html/user/login.html'>登入</a></li>");
+		$("#logined").append("<li class='layui-nav-item'><a href='/fly/html/user/reg.html'>注册</a></li>");*/
 	
 	$.ajax({
 			type:"POST",

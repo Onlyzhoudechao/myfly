@@ -70,7 +70,6 @@
               <div class="layui-input-inline">
                 <input type="text" id="L_email" name="userEmail" required lay-verify="email" autocomplete="off" value="" class="layui-input">
               </div>
-              <div class="layui-form-mid layui-word-aux">如果您在邮箱已激活的情况下，变更了邮箱，需<a href="activate.html" style="font-size: 12px; color: #4f99cf;">重新验证邮箱</a>。</div>
             </div>
             <div class="layui-form-item">
               <label for="L_username" class="layui-form-label">昵称</label>
@@ -90,6 +89,17 @@
                 <input type="text" id="L_city" name="userAddress" autocomplete="off" value="" class="layui-input">
               </div>
             </div>
+             <div class="layui-form-item">
+             		<label for="L_question" class="layui-form-label">密码问题</label>
+             		<div class="layui-input-inline">
+                	<input type="text" id="L_question" name="userQuestion" autocomplete="off" value="" class="layui-input">
+              	</div>
+              	<label for="L_answer" class="layui-form-label">问题答案</label>
+              	<div class="layui-input-inline">
+                	<input type="text" id="L_answer" name="userAnswer" autocomplete="off" value="" class="layui-input">
+              	</div>
+              	<div class="layui-form-mid layui-word-aux">请谨慎修改你的问题和答案，这将是你找回密码的唯一途径</div>
+             </div>
             <div class="layui-form-item layui-form-text">
               <label for="L_sign" class="layui-form-label">签名</label>
               <div class="layui-input-block">

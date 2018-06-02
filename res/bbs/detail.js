@@ -3,11 +3,14 @@ layui.use(['layer','form','fly'], function(){
  			 ,layer=layui.layer
  			 ,fly=layui.fly
  			 ,form=layui.form;
+ 			 
 			var postId=GetRequest();
 			if($.cookie('userId')){
 				$("#reply").append("<input type='hidden' name='replyUserid' value='"+$.cookie('userId')+"'>");
 			}
-			
+			if($.cookie('userId')){
+			   $("#LAY_jieAdmin").append("<span class='layui-btn layui-btn-xs jie-admin' id='addMark'>收藏</span>");
+			}
 			$("#reply").append("<input type='hidden' name='replyPostid' value='"+postId[1]+"'>");
 			$("#L_content").val('');
 			$.ajax({
@@ -39,9 +42,8 @@ layui.use(['layer','form','fly'], function(){
 			    		$("#look").text('0');
 			    	}
 			    	//登录的时候显示收藏和编辑
-			    	if($.cookie('userId')){
+			    	if($.cookie('userId')==data.postUserid){
 			    		$("#LAY_jieAdmin").append("<span class='layui-btn layui-btn-xs jie-admin' type='edit'><a href='/fly/html/jie/add.html?postId="+data.postId+"'>编辑此贴</a></span>");
-			    		$("#LAY_jieAdmin").append("<span class='layui-btn layui-btn-xs jie-admin' id='addMark'>收藏</span>");
 			    	}
 			    	$("#detailTitle").append("<a href='/fly/html/user/home.html?userId="+data.postUserid+"' class='fly-link'><cite>"+data.postUsername+"</cite></a>");
 			    	$("#detailTitle").append("<span>"+dateFormat(data.postCreatetime)+"</span>")
@@ -61,7 +63,7 @@ layui.use(['layer','form','fly'], function(){
 			    		childdiv.append("<a href="+url+" class='fly-link'><cite id='replyName'>"+data.listReply[i].replyUsername+"</cite></a>");
 			    		childdiv.appendTo(parentdiv);
 			    		parentdiv.append("<div class='detail-hits'><span id='replyTime'>"+dateFormat(data.listReply[i].replyTime)+"</span></div>");
-			    		if(data.listReply[i].replyIsend==1){
+			    		if(data.listReply[i].replyIsend==1 && $.cookie('userId')==data.postUserid){
 			    			parentdiv.append("<i class='iconfont icon-caina' title='最佳答案'></i>");
 			    		}
 			    		$(li).append(parentdiv);
@@ -71,9 +73,10 @@ layui.use(['layer','form','fly'], function(){
 			    		
 			    		var childdiv2=$('<div></div>');
 			    		childdiv2.addClass('jieda-reply');
-			    		childdiv2.append("<span class='jieda-zan' type='zan'><i class='iconfont icon-zan'></i><em>0</em></span><span type='reply'><i class='iconfont icon-svgmoban53'></i> 回复</span>");
-			    		if(data.listReply[i].replyIsend==0){
-			    			childdiv2.append("<div class='jieda-admin'><span class='jieda-accept' type='accept'>采纳</span></div>")
+			    		childdiv2.append("<span class='jieda-zan' type='zan'><i class='iconfont icon-zan'></i><em>0</em></span><span class='myreply' type='reply'><i class='iconfont icon-svgmoban53'></i> 回复</span>");
+			    		//当帖子已经结贴的时候不能显示已采纳
+			    		if((data.postIsend==0 || data.postIsend==null) && $.cookie('userId')==data.postUserid){
+			    			childdiv2.append("<div class='jieda-admin'><span class='jieda-accept myreply' value='"+data.listReply[i].replyId+"'  type='accept'>采纳</span></div>")
 			    		}
 			    		$(li).append(childdiv2);
 						ul.appendChild(li);						
@@ -83,6 +86,20 @@ layui.use(['layer','form','fly'], function(){
 			$("#header").load("/fly/html/common/header.html");
 			$("#typeName").load("/fly/html/common/column.html");
 			
+			$.ajax({
+				method : "get",
+				url:layui.data('url').bbsUrl+"post/selectHotPost.action",
+				dataType:"json",  
+				contentType:"application/json;charset=utf-8",
+				success:function(data){
+					if(data){
+						for(var i=0;data.length>i;i++){
+							$("#hotPost").append("<dd><a href='/fly/html/jie/detail.html?postId="+data[i].post_id+"'>"+data[i].post_topic+"</a> <span><i class='iconfont icon-pinglun1'></i>"+data[i].post_answerNum+"</span></dd>");
+						}
+					}
+				
+				}
+			})
 			
 			form.on('submit(addReply)', function(data){
 				if($.cookie('userId')){
@@ -107,12 +124,10 @@ layui.use(['layer','form','fly'], function(){
 				}else{
 					top.layer.msg('请先登录', {icon: 5});
 				}
-				 
 				return false;
 			})
 			
 			$("#addMark").on('click',function(){
-				if($.cookie('userId')){
 					$.ajax({
 			            url: layui.data('url').bbsUrl+"/mark/addMark.action",
 			            type:'post',
@@ -123,17 +138,49 @@ layui.use(['layer','form','fly'], function(){
 			            success: function (data) {
 			            	if(data.status==1){
 			            		top.layer.msg('已收藏', {icon: 1});
-			            		$(this).text('');
+			            	}else if(data.status==2){
+			            		top.layer.msg('已经收藏过，不能再次收藏', {icon: 1});
 			            	}else{
 			            		top.layer.msg('收藏失败', {icon: 5});
 			            	}
 			            }
 	        		});
-				}else{
-					top.layer.msg('请先登录', {icon: 5});
-				}
-				
 			});
+			
+			//监听点击回复和采纳
+		 $("#jieda").on('click','span.myreply',function(){
+		 	var type=$(this).attr('type');
+		 	
+		 	if(type=='reply'){
+		 		var val =$("#L_content").val();
+		      var aite = '@'+  $("#replyName").text().replace(/\s/g, '');
+		      $("#L_content").focus();
+		      if(val.indexOf(aite) !== -1) return;
+		      $("#L_content").val(aite +' ' + val);
+		 	}else{
+		 		var value=$(this).val('value')[0].attributes.value['value'];
+			    layer.confirm('是否采纳该回答为最佳答案？', function(index){
+			        layer.close(index);
+			        $.ajax({
+			           type:"POST",
+						url:layui.data('url').bbsUrl+"post/setPostEnd.action",
+						dataType:"json",  
+						data:{postId:postId[1],replyId:value},
+						headers: {
+		             				 'X-Token':$.cookie('X-Token')
+		          				},
+			            success: function (data) {
+			            	if(data.status==1){
+			            		top.layer.msg('采纳成功', {icon: 1});
+			            		window.location.reload();
+			            	}else{
+			            		top.layer.msg('采纳失败', {icon: 1});
+			            	}
+			            }
+	        		});
+			      });
+		 	}
+		  });	
 })
 
 //获取url后面带过来的参数
@@ -146,3 +193,4 @@ function GetRequest() {
    }
    return strs;
 }
+

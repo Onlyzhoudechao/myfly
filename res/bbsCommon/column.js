@@ -5,11 +5,14 @@ layui.use(['layer','laytpl', 'form', 'element','laypage'],function(){
   	,element = layui.element
   	,laypage = layui.laypage
 	,layer=layui.layer;
-	/*if($.cookie('userId')){
-		$("#addPostnew").on('click',function(){
-			alert("66");
-		})
-	}*/
+	$("#addPostnew").on('click',function(){
+		if($.cookie('userId')){
+			window.location.href='/fly/html/jie/add.html';
+		}else{
+			top.layer.msg('请先登录', {icon: 5});
+		}
+	})
+	
 	//获取首页传过来的类型ID
 	var tyId=GetRequest();
 		$.ajax({
@@ -21,7 +24,7 @@ layui.use(['layer','laytpl', 'form', 'element','laypage'],function(){
 			success:function(data){
 				if(data){
 					for(var i = 0; i<data.length; i++){
-						$("#layui_myul li").eq(1).append(" <li><a href='javascript:void(0);' value='"+data[i].typeId+"'>"+data[i].typeName+"</a></li>");
+						$("#layui_myul li").eq(1).append(" <li id=a_'"+data[i].typeId+"'><a href='javascript:void(0);' value='"+data[i].typeId+"'>"+data[i].typeName+"</a></li>");
 					}
 					if($.cookie('userId') !=null && $.cookie('userName') !=null){
 						var ul=$("#layui_myul");
@@ -31,7 +34,7 @@ layui.use(['layer','laytpl', 'form', 'element','laypage'],function(){
 				}
 				if(layui.cache.page && layui.cache.page == 'jie'){
 					if(tyId){
-						//console.log($("#layui_myul li a").eq(0).attr());
+						$("#a_"+tyId[0]).addClass("layui-this");
 						selectPostByPage(1,null,null,tyId[0]);
 					}else{
 						selectPostByPage();
@@ -45,8 +48,7 @@ layui.use(['layer','laytpl', 'form', 'element','laypage'],function(){
 				
 			}
 		});
-				
-				//点击类型时的触发事件
+		//点击类型时的触发事件
 				$("#layui_myul li").on('click',function(){
 					//切换点击类型时，综合这一栏去除选中
 					$("#filter1 a").removeClass("layui-this");

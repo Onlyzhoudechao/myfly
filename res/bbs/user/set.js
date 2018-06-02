@@ -4,7 +4,9 @@ layui.use(['layer','form'], function(){
  			 ,layer=layui.layer
  			 ,form=layui.form;
  		 $("#header").load("/fly/html/common/header.html");
- 		 
+ 		  if(!$.cookie('userId')){
+ 			 	window.location.href='login.html';
+ 			 }
  		 $.ajax({
 			method : "get",
 			url:layui.data('url').bbsUrl+"buser/getBuserById/"+$.cookie('userId')+".action",
@@ -19,6 +21,8 @@ layui.use(['layer','form'], function(){
 				$("#userId2").val(data.userId);  //设置第二个表单的隐藏域
 				$("#L_email").val(data.userEmail);
 				$("#L_username").val(data.userName);
+				$("#L_question").val(data.userQuestion);
+				$("#L_answer").val(data.userAnswer);
 				if(data.userSex){
 					if(data.userSex=="0"){
 						$("input[name='userSex']").get(0).checked=true; 

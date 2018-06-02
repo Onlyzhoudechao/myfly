@@ -13,6 +13,20 @@ layui.use(['layer','laytpl', 'form', 'element'],function(){
 	  key: 'bbsUrl'
 	  ,value: 'http://127.0.0.1:8080/oneManageM/'
 	});
+	$.ajax({
+			method : "get",
+			url:layui.data('url').bbsUrl+"post/selectHotPost.action",
+			dataType:"json",  
+			contentType:"application/json;charset=utf-8",
+			success:function(data){
+				if(data){
+					for(var i=0;data.length>i;i++){
+						$("#hotPost").append("<dd><a href='/fly/html/jie/detail.html?postId="+data[i].post_id+"'>"+data[i].post_topic+"</a> <span><i class='iconfont icon-pinglun1'></i>"+data[i].post_answerNum+"</span></dd>");
+					}
+				}
+			
+			}
+		})
  })
 
 //查询出顶置的4条帖子

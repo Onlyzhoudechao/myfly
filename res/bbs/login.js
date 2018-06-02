@@ -3,15 +3,17 @@ layui.use(['layer','form'],function(){
  			 ,layer=layui.layer
  			 ,form=layui.form;
  		form.on('submit(login)', function(data){
-	 		var action = $(data.form).attr('action');
-			var url=layui.data('url').bbsUrl+action;
 			$.ajax({
 			 		type:'post',
-			        dataType:'json',
-			        data: JSON.stringify(data.field),
-			        url: url,
+			       // data:{userName:data.field.userName,userPassword:data.field.userPassword},
+			       // data: JSON.stringify(data.field),
+			        data: data.field,
+			        url: layui.data('url').bbsUrl+"/tokens/login.action",
 			        xhrFields: {withCredentials: true},
-			        contentType:"application/json;charset=utf-8",
+			        crossDomain: true,
+			        headers: {
+             				 'X-Token':$.cookie('X-Token')
+          				},
 			        success: function(res){
 			          if(res.status === 0) {
 			            top.layer.msg(res.msg, {icon: 1});
@@ -32,7 +34,7 @@ layui.use(['layer','form'],function(){
 })
  	function tohome(){
  		//setTimeout("window.location.href='home.html?value='+userId",2000);
- 		setTimeout("window.location.href='home.html'",1000);
+ 		setTimeout("window.location.href='/fly/html/user/home.html'",1000);
  	}
  	
  	
